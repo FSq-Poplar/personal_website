@@ -8,6 +8,7 @@
 	
 	<!-- Scripts and imports -->
 	<link rel="stylesheet" href="./index_files/master.css" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Lato:300|Grand+Hotel" rel="stylesheet" type="text/css" />
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"  rel="stylesheet">
 	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 	<script
@@ -19,7 +20,11 @@
 <body>
 	<header>
 		<div class="home-header">
-			<h1 id="home">Poplar Wang is a 2nd year student at the University of Toronto, studying Computer Science and Economics.<i class="pulsate">|</i></h1>
+			<h1 id="home">
+				<em>Poplar Wang</em>
+				 is a second year student at the University of Toronto, pursuing a double major in Computer Science and Economics.
+				<i class="pulsate">|</i>
+			</h1>
 		</div>
 	</header>
 
@@ -48,7 +53,7 @@
 
 		<article class="post-tile">
 		<a href="./projects/name" aria-label="project">
-		<div class="post-background" data-aos="fade-up" data-aos-delay="300" style="background-image: url(./index_files/fpga-nn.png);">
+		<div class="post-background" data-aos="fade-up" data-aos-delay="300" data-aos-offset="0" style="background-image: url(./index_files/fpga-nn.png);">
 		<img style="visibility: hidden;" src="./index_files/fpga-nn.png">
 		<i class="fa fa-circle-o-notch fa-spin" style="opacity:0;"></i>
 		</div>
@@ -57,7 +62,7 @@
 
 		<article class="post-tile">
 		<a href="./projects/name" aria-label="project">
-		<div class="post-background" data-aos="fade-up" data-aos-delay="300" style="background-image: url(./index_files/fpga-nn.png);">
+		<div class="post-background" data-aos="fade-up" data-aos-delay="300" data-aos-offset="0" style="background-image: url(./index_files/fpga-nn.png);">
 		<img style="visibility: hidden;" src="./index_files/fpga-nn.png">
 		<i class="fa fa-circle-o-notch fa-spin" style="opacity:0;"></i>
 		</div>
@@ -86,13 +91,13 @@
 	</main>
 
 	<script defer=""> <!-- Project tile interaction -->
-		$('div.post-background img').load(function(e)) {
+		$('div.post-background img').load(function(e) {
 			$(e.target).parent().css("background-image", "url('"+e.target.src+"')")
 			$(e.target).parent().find("i").css("opacity", "0")
 		}).each(function() {
 			$(this).parent().css("background-image", "url('"+this.src+"')")
 			$(this).parent().find("i").css("opacity", "0")
-		}})
+		})
 	</script>
 
 	<footer>
