@@ -71,7 +71,7 @@
 		<figcaption><font size="2">ModelSim testing was a nightmare of its own.</font></figcaption>
 	<center></p></figure>
 
-	<p data-aos="fade-up">The UI of the project also presented a few minor problems, mostly resulting from the same language restrictions encountered in the other parts of the project, as well as some new ones (such as converting <a href="https://github.com/Nananas/ImageToMif"><em>png to mif</em></a>). The best example of "Verilog should support this but doesn't" was the lack of a modulo function, which made converting cursor position to a square on the 16x16 grid (on which users "wrote" their number) much more difficult than it should've been.</p>
+	<p data-aos="fade-up">The UI of the project also presented a few minor problems, mostly resulting from the same language restrictions encountered in the other parts of the project, as well as some new ones (such as converting <a href="https://github.com/Nananas/ImageToMif"><em>png to mif</em></a>). The best example of "Verilog should support this but doesn't" was the lack of a modulo function, which made converting cursor position to a square on the 14x14 grid (on which users "wrote" their number) much more difficult than it should've been.</p>
 
 	<p data-aos="fade-up">I've been pretty hard on Verilog 2005, but in all fairness many of these so called restrictions make much more sense once placed in the context of a hardware description language, as opposed to a high level language like C or Python. While SystemVerilog would've made this project much simpler, at the end of the day many of these issues are just direct results of working with hardware.</p>
 
@@ -82,7 +82,7 @@
 
 	<p data-aos="fade-up">With everything said, we were ultimately able to get the neural network up and running, albeit with a few compromises. I'd like to thank my partner, Wentao, for powering through countless all-nighters and teaching me the basics of machine learning. I'd also like to thank our professor, Rabia Bakhteri, for her guidance and support throughout the development period.</p>
 
-	<p data-aos="fade-up">The source code for the project can be found <a href="https://github.com/FSq-Poplar/FPGA_NN"><em>on my GitHub here</em></a>. Note some modules, such as the top level network module and conversion from MNIST to our 16x16 grid, have been omitted to prevent direct resubmission by future CSC258 students.</p>
+	<p data-aos="fade-up">The source code for the project can be found <a href="https://github.com/FSq-Poplar/FPGA_NN"><em>on my GitHub here</em></a>. Note some modules, such as the top level network module and conversion from MNIST to our 14x14 grid, have been omitted to prevent direct resubmission by future CSC258 students.</p>
 
 	</main>
 
