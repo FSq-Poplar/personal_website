@@ -34,12 +34,25 @@
 
 	<p data-aos="fade-up">So you want to build a hardware neural network.</p>
 
-	<p data-aos="fade-up">I'm by no means an expert on the topic, and would highly recommend <a href="http://neuralnetworksanddeeplearning.com/chap1.html"><em>this book</em></a> to anyone looking to learn the basics of machine learning. Without going into the details, the plan seemed fairly simple from the start; each component and level of the network, be it a neuron or layer, would have a corresponding module. The network's setup would be determined by a Python script and training would be done by loading the MNIST dataset. Having a sufficient understanding of the topic already, our first schematics were drawn up fairly quickly.</p>
+	<p data-aos="fade-up">I'm by no means an expert on the topic, and would highly recommend <a href="http://neuralnetworksanddeeplearning.com/chap1.html"><em>this book</em></a> to anyone looking to learn the basics of machine learning. Without going into the details, the plan seemed fairly simple from the start; each component and level of the network, be it a neuron or layer, as well as any unsupported mathematical operations would have a corresponding module written. The network's setup would be determined by a Python script and training would be done by loading the MNIST dataset. Having a sufficient understanding of the topic already, our first schematics were drawn up fairly quickly.</p>
 
 	<figure data-aos="fade-up"><p><center>
 		<img src="./resources/proud_wentao.jpg" title="Possibly taken at 3am">
 		<figcaption><font size="2">A proud Wentao stands in front of the first schematic iteration.</font></figcaption>
 	<center></p></figure>
+
+	<p data-aos="fade-up">Of course, things didn't go as smoothly as expected.</p>
+
+	<p data-aos="fade-up">I should start off by saying the problems we ran into were rarely machine learning related; a simple neural network can reach 95% accuracy on the MNIST dataset with <a href="https://github.com/FSq-Poplar/FPGA_NN/blob/master/python_simulation/network.py"><em>a bit over 100 lines of code</em></a>, and is relatively rudimentary. Rather, the majority of our problems arose from Verilog's limitations (especially when compared to its modern counterpart SystemVerilog), and the 5CSEMA5F31C6 chip we had available to us.</p>
+
+	<p data-aos="fade-up">Lets start off with the obvious - the board. While the DE1-SoC is a great board for teaching the basics of computer organization and FPGA development, it proved quite lacking for a project of this scale. The first problem we encountered was that the size of the chip did not allow for a network with back-propogation, much to our disappointment. We were forced to instead load weights and biases from the aforementioned Python script and implement only the feed-forward portion of the network on the actual FPGA.</p>
+
+	<figure data-aos="fade-up"><p><center>
+		<img src="./resources/de1soc.png" title="The little board that couldn't">
+		<figcaption><font size="2">The Terasic DE1-SoC board used by UofT</font></figcaption>
+	<center></p></figure>
+
+	<p data-aos="fade-up">To make matters worse, the board was also quite lacking in memory; as the number of weights and biases grows exponentially with layers, these values had to be loaded onto the board's RAM instead of registers directly on the chip. While this isn't a major issue in terms of difficulty, it did complicate the design and timing of the network considerably, which cost a lot of time.</p>
 
 	</main>
 
