@@ -34,7 +34,7 @@
 
 	<p data-aos="fade-up">So you want to build a hardware neural network.</p>
 
-	<p data-aos="fade-up">I'm by no means an expert on the topic, and would highly recommend <a href="http://neuralnetworksanddeeplearning.com/chap1.html"><em>this book</em></a> to anyone looking to learn the basics of machine learning. Without going into the details, the plan seemed fairly simple from the start; each component and level of the network, be it a neuron or layer, as well as any mathematical operations not built into Verilog, would have a corresponding module written. The network's setup would be determined by a Python script and training would be done by loading the MNIST dataset. Having a sufficient understanding of the topic already, our first schematics were drawn up fairly quickly.</p>
+	<p data-aos="fade-up">This project was inspired by UofT's CSC258 Computer Organization course. I'm by no means an expert on the topic, and would highly recommend <a href="http://neuralnetworksanddeeplearning.com/chap1.html"><em>this book</em></a> to anyone looking to learn the basics of machine learning. Without going into the details, the plan seemed fairly simple from the start; each component and level of the network, be it a neuron or layer, as well as any mathematical operations not built into Verilog, would have a corresponding module written. The network's setup would be determined by a Python script and training would be done by loading the MNIST dataset. Having a sufficient understanding of the topic already, our first schematics were drawn up fairly quickly.</p>
 
 	<figure data-aos="fade-up"><p><center>
 		<img src="./resources/proud_wentao.jpg" title="Possibly taken at 3am">
@@ -43,7 +43,7 @@
 
 	<p data-aos="fade-up">Of course, things didn't go as smoothly as expected.</p>
 
-	<p data-aos="fade-up">I should start off by saying the problems we ran into were rarely machine learning related; a simple neural network can reach 95% accuracy on the MNIST dataset with <a href="https://github.com/FSq-Poplar/FPGA_NN/blob/master/python_simulation/network.py"><em>a bit over 100 lines of code</em></a>, and is relatively rudimentary. Rather, the majority of our problems arose from Verilog's limitations (especially when compared to its modern counterpart SystemVerilog), and the 5CSEMA5F31C6 chip we had available to us.</p>
+	<p data-aos="fade-up">I should start off by saying the problems we ran into were rarely machine learning related; a simple neural network can reach 95% accuracy on the MNIST dataset with <a href="https://github.com/FSq-Poplar/FPGA_NN/blob/master/python_simulation/network.py"><em>a bit over 100 lines of code</em></a> in a high level language, and is relatively rudimentary. Rather, the majority of our problems arose from Verilog's limitations (especially when compared to its modern counterpart SystemVerilog), and the 5CSEMA5F31C6 chip we had available to us.</p>
 
 	<p data-aos="fade-up">Lets start off with the obvious - the board. While the DE1-SoC is a great board for teaching the basics of computer organization and FPGA development, it proved quite lacking for a project of this scale. The first problem we encountered was that the size of the chip did not allow for a network with back-propogation, much to our disappointment. We were forced to instead load weights and biases from the aforementioned Python script and implement only the feed-forward portion of the network on the actual FPGA.</p>
 
@@ -61,14 +61,27 @@
 		<figcaption><font size="2">There were ways to jury-rig Verilog, but it wasn't pretty.</font></figcaption>
 	<center></p></figure>
 
-	<p data-aos="fade-up">But the biggest issue was the lack of floats. In short, Verilog 2005's built-in real data type is completely unusable for this project, as they do not support the mathematical operations required. Integers were workable, asides from the fact that rounding that much would make the neural network beyond worthless. This meant that we were forced to create a new number representation in Verilog, as well as all of its corresponding operations; everything from hadamard products to basic addition.</p>
+	<p data-aos="fade-up">But the biggest issue was the lack of floats. In short, Verilog 2005's built-in real data type is completely unusable for this project, as they do not support the mathematical operations required. Integers were workable, asides from the fact that rounding that much would make the neural network beyond worthless (thanks to our use of the <a href="http://mathworld.wolfram.com/SigmoidFunction.html"><em>Sigmoid function</em></a>). This meant that we were forced to create a new number representation in Verilog, as well as all of its corresponding operations; everything from hadamard products to basic addition.</p>
 
-	<p data-aos="fade-up">Our final solution was to represent floats with 32-digit integers instead as "binary", and write all the necessary operations from there. This was a very crude way to represent doubles in the language, but was the only solution that we were able to implement given our deadlines. While it works, its not very memory efficient and definitely a pain for humans to read.</p>
+	<p data-aos="fade-up">Our final solution was to represent floats with 32-digit integers as "binary" instead, and write all the necessary operations from there. This was a very crude way to represent doubles in the language, but was the only solution that we were able to implement given our deadlines. While it works, its not very memory efficient and definitely a pain for humans to read.</p>
 
 	<figure data-aos="fade-up"><p><center>
 		<img src="./resources/modelsim_binary.png" title="I hate this one even more">
 		<figcaption><font size="2">ModelSim testing was a nightmare of its own.</font></figcaption>
 	<center></p></figure>
+
+	<p data-aos="fade-up">The UI of the project also presented a few minor problems, mostly resulting from the same language restrictions encountered in the other parts of the project, as well as some new ones (such as converting <a href="https://github.com/Nananas/ImageToMif"><em>png to mif</em></a>). The best example of "Verilog should support this but doesn't" was the lack of a modulo function, which made converting cursor position to a square on the 16x16 grid (on which users "wrote" their number) much more difficult than it should've been.</p>
+
+	<p data-aos="fade-up">I've been pretty hard on Verilog 2005, but in all fairness many of these so called restrictions make much more sense once placed in the context of a hardware description language, as opposed to a high level language like C or Python. While SystemVerilog would've made this project much simpler, at the end of the day many of these issues are just direct results of working with hardware.</p>
+
+	<figure data-aos="fade-up"><p><center>
+		<img src="./resources/unique_test.jpg" title="Exactly what it looks like">
+		<figcaption><font size="2">A test done by an onlooker in Bahen (network predicted: 1)</font></figcaption>
+	<center></p></figure>
+
+	<p data-aos="fade-up">With everything said, we were ultimately able to get the neural network up and running, albeit with a few compromises. I'd like to thank my partner, Wentao, for powering through countless all-nighters and teaching me the basics of machine learning. I'd also like to thank our professor, Rabia Bakhteri, for her guidance and support throughout the development period.</p>
+
+	<p data-aos="fade-up">The source code for the project can be found <a href="https://github.com/FSq-Poplar/FPGA_NN"><em>on my GitHub here</em></a>. Note some modules, such as the top level network module and conversion from MNIST to our 16x16 grid, have been omitted to prevent direct resubmission by future CSC258 students.</p>
 
 	</main>
 
@@ -83,7 +96,7 @@
 			<li data-aos="fade-up"><a title="Listen to my music" href="https://ih0.redbubble.net/image.455809642.9971/poster,840x830,f8f8f8-pad,750x1000,f8f8f8.u2.jpg"><i class="fa fa-youtube-square"></i></a></li>
 		</center>
 
-		<p class="prompt" data-aos="fade-up" data-aos-offset="60" data-aos-delay="300"><a href="../../index.html"><i class="pulsate">./home?</i></a></p>
+		<p class="prompt" data-aos="fade-up" data-aos-offset="60" data-aos-delay="300"><a href="../../"><i class="pulsate">./home?</i></a></p>
 	</footer>
 
 	<a href="./index.html#home" class="to-home hidden">
