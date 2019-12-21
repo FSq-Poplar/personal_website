@@ -34,7 +34,7 @@
 
 	<p data-aos="fade-up">So you want to build a hardware neural network.</p>
 
-	<p data-aos="fade-up">I'm by no means an expert on the topic, and would highly recommend <a href="http://neuralnetworksanddeeplearning.com/chap1.html"><em>this book</em></a> to anyone looking to learn the basics of machine learning. Without going into the details, the plan seemed fairly simple from the start; each component and level of the network, be it a neuron or layer, as well as any unsupported mathematical operations would have a corresponding module written. The network's setup would be determined by a Python script and training would be done by loading the MNIST dataset. Having a sufficient understanding of the topic already, our first schematics were drawn up fairly quickly.</p>
+	<p data-aos="fade-up">I'm by no means an expert on the topic, and would highly recommend <a href="http://neuralnetworksanddeeplearning.com/chap1.html"><em>this book</em></a> to anyone looking to learn the basics of machine learning. Without going into the details, the plan seemed fairly simple from the start; each component and level of the network, be it a neuron or layer, as well as any mathematical operations not built into Verilog, would have a corresponding module written. The network's setup would be determined by a Python script and training would be done by loading the MNIST dataset. Having a sufficient understanding of the topic already, our first schematics were drawn up fairly quickly.</p>
 
 	<figure data-aos="fade-up"><p><center>
 		<img src="./resources/proud_wentao.jpg" title="Possibly taken at 3am">
@@ -52,7 +52,23 @@
 		<figcaption><font size="2">The Terasic DE1-SoC board used by UofT</font></figcaption>
 	<center></p></figure>
 
-	<p data-aos="fade-up">To make matters worse, the board was also quite lacking in memory; as the number of weights and biases grows exponentially with layers, these values had to be loaded onto the board's RAM instead of registers directly on the chip. While this isn't a major issue in terms of difficulty, it did complicate the design and timing of the network considerably, which cost a lot of time.</p>
+	<p data-aos="fade-up">To make matters worse, the board was also quite lacking in memory; as the number of weights and biases grows exponentially with layers, these values had to be loaded onto the board's RAM instead of registers directly on the chip. While this isn't a major issue in terms of difficulty, it did complicate the design and timing of the network considerably, which cost a lot of development time.</p>
+
+	<p data-aos="fade-up">Board limitations were brought up as a possibility beforehand. Unfortunately, we were completely unprepared for the restrictions Verilog '05 would lay down. There were several small things here and there, my personal favourite being the <a href="https://stackoverflow.com/questions/40010554/how-do-i-initialize-a-2-dimensional-parameter-array-in-verilog-2005?rq=1"><em>lack of support for two-dimensional arrays</em></a>. It wasn't uncommon to write Python scripts to write repetitive Verilog code, which is as horrifying as it sounds.</p>
+
+	<figure data-aos="fade-up"><p><center>
+		<img src="./resources/beautiful_verilog.png" title="I hate this image">
+		<figcaption><font size="2">There were ways to jury-rig Verilog, but it wasn't pretty.</font></figcaption>
+	<center></p></figure>
+
+	<p data-aos="fade-up">But the biggest issue was the lack of floats. In short, Verilog 2005's built-in real data type is completely unusable for this project, as they do not support the mathematical operations required. Integers were workable, asides from the fact that rounding that much would make the neural network beyond worthless. This meant that we were forced to create a new number representation in Verilog, as well as all of its corresponding operations; everything from hadamard products to basic addition.</p>
+
+	<p data-aos="fade-up">Our final solution was to represent floats with 32-digit integers instead as "binary", and write all the necessary operations from there. This was a very crude way to represent doubles in the language, but was the only solution that we were able to implement given our deadlines. While it works, its not very memory efficient and definitely a pain for humans to read.</p>
+
+	<figure data-aos="fade-up"><p><center>
+		<img src="./resources/modelsim_binary.png" title="I hate this one even more">
+		<figcaption><font size="2">ModelSim testing was a nightmare of its own.</font></figcaption>
+	<center></p></figure>
 
 	</main>
 
