@@ -35,15 +35,26 @@
 
 	<p data-aos="fade-up">A few years ago, a friend of mine sent me several rather cryptic messages. Essentially, he had asked myself (and a few other friends in our neighborhood) to look out for his grandmother should she be seen walking around the community. At the time we didn't know, but this was because his grandmother was diagnosed with dementia, and at times would wander outside of their home with little to no idea where she was.</p>
 
-	<p data-aos="fade-up">This group of friends and I built an app at HackED 2020 to help those diagnosed with these conditions, focusing specifically on wandering and the dangers associated with it. We are proud to present Ppobo, which received the first place prize.</p>
+	<p data-aos="fade-up">This group of friends and I built an app at HackED 2020 to help those diagnosed with these conditions, focusing specifically on wandering and the dangers associated with it. We are proud to present PpoBO, which received the first place prize.</p>
 
 	<figure data-aos="fade-up"><p><center>
 		<img src="./resources/architecture.jpg" title="other images">
 		<figcaption><font size="2">A view of the app's architecture and tech stack</font></figcaption>
 	<center></p></figure>
 
-	<p data-aos="fade-up">text</p>
+	<p data-aos="fade-up">PpoBO works with two types of users, caretakers and "care receivers". Accounts are registered individually, and from there recievers are able to register caretakers; storage and secure authentication is done with Google's Firebase. From there, each type of user has different actions available to them from within the app.</p>
 
+	<p data-aos="fade-up">The UI/UX is entirely native android, so I won't spend much time on it. As our primary goal was to combat wandering, caretaker accounts are able to set up geofences for their care receivers, and receive a text message alerting them whenever the receiver leaves the geofence.</p>
+
+	<figure data-aos="fade-up"><p><center>
+		<img src="./resources/geofencing.jpg" title="other images">
+		<figcaption><font size="2">Caretaker's geofencing screen</font></figcaption>
+	<center></p></figure>
+
+	<p data-aos="fade-up">This was once again accomplished with Google, this time using Maps API. Geofences are part of Google maps API, and events can be set up to trigger on entering, leaving, or idling in these geofences. In our case, this was a text message. Unfortunately, the API currently only supports circular geofences.</p>
+
+	<p data-aos="fade-up">But of course, our concern isn't if the caretaker leaves the geofence, but the care receiver. Thus, once a geofence is registered by a caretaker, it is immediately uploaded to the Firebase database and linked to the care receiver's app. This is currently not real time and requires an app restart; this is definitely something to fix when we resume development.</p>
+	
 	</main>
 
 	<footer>
