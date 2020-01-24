@@ -1,0 +1,97 @@
+<html>
+
+<head>
+	<!-- Meta data -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mini Projects</title>
+	<link rel="icon" sizes="400x400" href="../../resources/logo.png">
+	
+	<!-- Scripts and imports -->
+	<link rel="stylesheet" href="../../css/master.css" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Lato:300|Grand+Hotel" rel="stylesheet" type="text/css" />
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"  rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<header name="home">
+		<div class="home-header">
+			<h1 id="home">
+			<em>mini_stuff:</em>
+			Quick Projects from a Bored CS Student
+			</h1>
+		</div>
+	</header>
+
+	<main>
+
+	<p class="prompt"><a href="../../"><i class="pulsate">./home?</i></a></p>
+
+	<p class="prompt">echo `< mini_stuff_blog.txt`</p>
+
+	<p data-aos="fade-up"><em>Binder Sleeper Laptop</em></p>
+
+	<p data-aos="fade-up">No GitHub repo for this one; an old netbook of mine had its case crack, to the point where it wasn't really portable anymore unless I wanted to break the thing in half. Fortunately, it was still functional as a computer and I ended up taking the thing out of its chassis.</p>
+
+	<figure data-aos="fade-up"><p><center>
+		<img src="./resources/deconstructed_laptop.jpg" title="Call me min liang tan">
+		<figcaption><font size="2">The deconstructed netbook</font></figcaption>
+	<center></p></figure>	
+
+	<p data-aos="fade-up">I remembered seeing pentesting kits built into makeup kits, and had the idea to build the laptop into a binder I had lying around. After buying a bluetooth keyboard/trackpad, it only took a few hours to put together this sleeper laptop.</p>
+
+	<figure data-aos="fade-up"><p><center>
+		<img src="./resources/finished_sleeper.jpg" title="Rip low light S9 camera performance">
+		<figcaption><font size="2">Finished</font></figcaption>
+	<center></p></figure>	
+
+	<p data-aos="fade-up"><a href="https://github.com/FSq-Poplar/storage_visualizer"><em>Storage Visualizer</em></a></p>
+
+	<p data-aos="fade-up">This was actually made from a school assignment in which we made a storage visualizer to practice working with trees. I needed to find ogg music files in a game folder, and ended up adding the file type colorization to the assignment to find their directory; later I rebuilt it from scratch and this tool took shape.</p>
+
+	<figure data-aos="fade-up"><p><center>
+		<img src="./resources/fs_visualizer.png" title="Yes, I'm aware I suck at colors">
+		<figcaption><font size="2">A screenshot of the program</font></figcaption>
+	<center></p></figure>
+
+	</main>
+
+	<footer>
+		<p class="prompt" data-aos="fade-up">./contact_info</p>
+		<ul class="links">
+		<center>
+			<li data-aos="fade-up"><a title="Send me an Email" href="mailto:wang.poplar@gmail.com?subject=Hello"><i class="fa fa-envelope-square"></i></a></li>
+			<li data-aos="fade-up"><a title="Check out my GitHub" href="https://github.com/Fsq-Poplar"><i class="fa fa-github-square"></i></a></li>
+			<li data-aos="fade-up"><a title="Connect with me on LinkedIn" href="https://www.linkedin.com/in/poplar-wang/"><i class="fa fa-linkedin-square"></i></a></li>
+			<li data-aos="fade-up"><a title="Stalk my Reddit" href="https://www.reddit.com/user/TrueElite/"><i class="fa fa-reddit-square"></i></a></li>
+			<li data-aos="fade-up"><a title="Listen to my music" href="https://ih0.redbubble.net/image.455809642.9971/poster,840x830,f8f8f8-pad,750x1000,f8f8f8.u2.jpg"><i class="fa fa-youtube-square"></i></a></li>
+		</center>
+
+		<p class="prompt" data-aos="fade-up" data-aos-offset="60" data-aos-delay="300"><i class="pulsate">|</i></p>
+	</footer>
+
+	<a href="./index.html#home" class="to-home hidden">
+		<span class="prompt">./to_top</span>
+	</a>
+
+	<script> <!-- Return to home script -->
+		$(window).scroll(function(e) {
+			if($(window).scrollTop() > 100) {
+				$('a.to-home').removeClass('hidden');
+			} else {
+				$('a.to-home').addClass('hidden');
+			}
+		});
+	</script>
+
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+		AOS.init({duration: 1200, once: true, disable: 'mobile'});
+	</script>
+</body>
+
+</html>
