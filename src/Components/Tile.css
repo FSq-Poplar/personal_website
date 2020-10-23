@@ -1,0 +1,50 @@
+article.tile-component {
+  margin: 4px 1%;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  max-width: 48%;
+  min-width: 48%;
+  max-height: 14vw;
+  min-height: 14vw;
+  -moz-opacity: 0.75;
+  -khtml-opacity: 0.75;
+  -webkit-opacity: 0.75;
+  opacity: 0.75;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: -webkit-filter, filter, opacity;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+}
+
+article.tile-component:hover {
+  -webkit-filter: grayscale(0%);
+  filter: none;
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  -webkit-opacity: 1;
+  opacity: 1;
+}
+
+article.tile-component link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+article.tile-component .post-background {
+  background-color: #333;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  text-align: center;
+}
