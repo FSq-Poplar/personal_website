@@ -11,6 +11,12 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link href="https://fonts.googleapis.com/css?family=Lato:300|Grand+Hotel" rel="stylesheet" type="text/css" />
     <title>Poplar Wang</title>
+
+    <script>
+      window.loadPromise = new Promise(function(resolve) {
+        window.addEventListener('load', resolve);
+      });
+    </script>
   </head>
 
   <body>
