@@ -10,12 +10,14 @@ import FPGANN from './Views/FPGANN'
 import Builds from './Views/Builds'
 import MiniProjects from './Views/Miniprojects'
 import { play, exit } from './Animations/Play'
+import Banner from './Components/Banner'
 
 export default class App extends React.Component {
   render () {
     return (
       <BrowserRouter>
         <div className='App'>
+          <Banner />
           <Route render={({ location }) => {
             const { pathname, key } = location
             return (

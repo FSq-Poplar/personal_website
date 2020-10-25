@@ -10,6 +10,9 @@ export const play = (pathname, node, appears) => {
   window
     .loadPromise
     .then(() => window.requestAnimationFrame(() => timeline.play()))
+
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
 }
 
 export const exit = (node) => {

@@ -1,0 +1,19 @@
+.banner-component {
+  width: 42vw;
+  height: 16vh;
+}
+
+.banner-img {
+  width: 45vw;
+  height: 13vh;
+  margin-left: -1.5vw;
+}
+
+.banner-logo {
+  width: 4vw;
+  border-radius: 50%;
+  border: 2px solid black;
+  position: absolute;
+  left: 48vw;
+  top: 9vh;
+}
