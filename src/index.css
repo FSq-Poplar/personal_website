@@ -3,7 +3,9 @@ body {
   font-weight: 550;
   font-size: 20px;
   color: #000;
-  background-color: #f1f1f1;
+  background-color: #00204e;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 *.prompt::before {
@@ -38,4 +40,5 @@ body {
 
 p {
   line-height: 1.5em;
+  padding: 0 1% 0 1%;
 }
