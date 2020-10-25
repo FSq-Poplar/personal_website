@@ -1,7 +1,8 @@
 # FSq-Poplar.github.io
+
 Code and deployment of my online portfolio. A live version can be found at [fsq-poplar.com](https://fsq-poplar.com/).
 
-The website is mostly stock React, with social media icons from [Font Awesome](https://www.npmjs.com/package/react-fontawesome) and animations constructed using [GreenSock](https://www.npmjs.com/package/gsap). 
+The website is mostly stock React, with social media icons from [Font Awesome](https://www.npmjs.com/package/react-fontawesome) and animations constructed using [GreenSock](https://www.npmjs.com/package/gsap).
 
 ## Workflows
 
@@ -11,11 +12,14 @@ The website is mostly stock React, with social media icons from [Font Awesome](h
 ## Usage
 
 Development:
-```
+
+```bash
 npm install
 npm start
 ```
+
 Deployment:
-```
+
+```bash
 npm build
 ```
