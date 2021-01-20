@@ -34,7 +34,7 @@
     ]
   },
   "devDependencies": {
-    "gsap": "2.0.1",
+    "gsap": "3.6.0",
     "htmlhint": "^0.14.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
